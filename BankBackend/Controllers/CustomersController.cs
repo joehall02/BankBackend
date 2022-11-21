@@ -53,7 +53,7 @@ namespace BankBackend.Controllers
                 using (var db = new BankContext())
                 {
                     // gets all customers from database
-                    customers = db.Customers.Where(c => c.FirstName.Contains(searchTerm)).ToList();
+                    customers = db.Customers.Where(c => c.FirstName.ToLower().Contains(searchTerm.ToLower())).ToList();
                 }
 
                 TempData["customers"] = customers;
@@ -63,7 +63,7 @@ namespace BankBackend.Controllers
         }
 
         [HttpPost]
-        public IActionResult Details(Customer customer)
+        public IActionResult Edit(Customer customer)
         {
             
             using (var db = new BankContext())
@@ -91,6 +91,18 @@ namespace BankBackend.Controllers
             }
             
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Details (Customer customer)
+        {
+            using (var db = new BankContext())
+            {
+                var customerTemp = db.Customers.Where(c => c.Id == customer.Id).FirstOrDefault();
+
+                TempData["customerTemp"] = customerTemp;
+            }
+
+            return View();
         }
         
         
