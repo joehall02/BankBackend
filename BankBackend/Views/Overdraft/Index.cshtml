@@ -1,0 +1,45 @@
+﻿@model BankBackend.Models.Customer;
+@{
+	ViewData["Title"] = "View Customers";
+
+	// gets list of customer objects sent by the controller
+	List<Customer> customers = TempData["customers"] as List<Customer>;
+}
+
+
+
+<div class="container">
+	@if (customers != null)
+	{
+		<div class="row">
+			<div class="col-md-12">
+
+				<div class="d-flex align-items-center justify-content-between">
+					<h1 class="py-3">Customer Overdraft</h1>
+				</div>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Salary</th>
+							<th>Overdraft</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (Customer customer in customers)
+						{
+							<tr>
+								<td>@customer.FirstName</td>
+								<td>@customer.LastName</td>
+								<td>£@customer.Salary</td>								
+								<td>£@(customer.Salary / 10)</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	}
+</div>
