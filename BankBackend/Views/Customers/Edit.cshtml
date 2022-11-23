@@ -7,7 +7,7 @@
 	Customer customer = TempData["customerTemp"] as Customer;
 }
 
-<h1>Customer Details</h1>
+<h1>@customer.FirstName's Details</h1>
 
 <form action="/Customers/UpdateDetails" method="post">
 	<input type="hidden" asp-for="Id" value="@customer.Id"/>

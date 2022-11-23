@@ -12,6 +12,5 @@ namespace BankBackend.Models
         public string Address { get; set; }
         public int Age { get; set; }
         public int Salary { get; set; }
-
     }
 }

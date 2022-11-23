@@ -20,4 +20,10 @@
 	
 	<h4>Salary</h4>
 	<p>	£@customer.Salary</p>
+
+	<!-- Edit button -->
+	<form asp-action="Edit" asp-controller="Customers" method="post">
+		<input type="hidden" asp-for="@customer.Id" value="@customer.Id">
+		<button type="submit" class="btn btn-primary col-lg-3 col-12 my-3 py-3">Edit</button>
+	</form>
 </div>
