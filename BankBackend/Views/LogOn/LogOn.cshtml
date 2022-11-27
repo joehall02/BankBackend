@@ -1,0 +1,29 @@
+﻿@model BankBackend.Models.Employee
+@{
+    Layout = "~/Views/Shared/LogonPage.cshtml";
+    ViewBag.Title = "SHU Bank Log In";
+}
+<div class="center">
+    <h1>Login</h1>
+    @using (Html.BeginForm())
+    {
+        <div class="txt_field">
+            @Html.TextBoxFor(c => c.Name)
+            <span></span>
+            <label>User Name</label>
+        </div>
+        <div>
+            <p></p>
+        </div>
+        <div class="txt_field">
+            @Html.PasswordFor(c => c.Password)
+            <span></span>
+            <label>Password</label>
+        </div>
+        <div>
+            <p></p>
+        </div>
+        <input type="submit" value="Login" />
+
+    }
+</div>
