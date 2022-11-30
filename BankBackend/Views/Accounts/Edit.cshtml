@@ -1,0 +1,47 @@
+﻿@model BankBackend.Models.Account;
+
+
+@{
+	ViewData["Title"] = "Account Details";
+
+	Account account = TempData["accounts"] as Account;
+}
+
+<h1>@account.FirstName's Details</h1>
+
+<form action="/Accounts/UpdateDetails" method="post">
+	<input type="hidden" asp-for="Id" value="@account.Id"/>
+	<div class="form-group col-md-6 col-12">
+		<label for="accountNumber">Account Number</label>
+		<input type="text" class="form-control" id="accountNumber" placeholder="Account Number" asp-for="AccountNumber" value="@account.AccountNumber">
+	</div>
+	<div class="form-group col-md-6 col-12">
+		<label for="firstName">First Name</label>
+		<input type="text" class="form-control" id="firstName" placeholder="First Name" asp-for="FirstName" value="@account.FirstName">
+	</div>
+	<div class="form-group col-md-6 col-12">
+		<label for="lastName">Last Name</label>
+		<input type="text" class="form-control" id="lastName" placeholder="Last Name" asp-for="LastName" value="@account.LastName">
+	</div>
+	<div class="form-group col-md-6 col-12">
+		<label for="address">Address</label>
+		<input type="text" class="form-control" id="address" placeholder="Address" asp-for="Address" value="@account.Address">
+	</div>
+	<div class="form-group col-md-6 col-12">
+		<label for="age">Age</label>
+		<input type="text" class="form-control" id="age" placeholder="Age" asp-for="Age" value="@account.Age">
+	</div>
+	<div class="form-group col-md-6 col-12">
+		<label for="salary">Salary</label>
+		<input type="text" class="form-control" id="salary" placeholder="Salary" asp-for="Salary" value="@account.Salary">
+	</div>
+	<button type="submit" class="btn btn-primary col-lg-3 col-12 my-3 py-3">Submit</button>	
+</form>
+
+<!-- Go Back Button -->
+<form asp-action="Details" asp-controller="Accounts" method="post">
+	<input type="hidden" asp-for="Id" value="@account.Id">
+	<button type="submit" class="btn btn-danger col-lg-3 col-12 my-3 py-3">Go Back</button>
+</form>
+
+

@@ -1,0 +1,36 @@
+﻿@{
+	ViewData["Title"] = "Details";
+	Account account = TempData["accounts"] as Account;
+}
+
+<h1>@account.FirstName's Details</h1>
+
+
+<!-- layout that shows customer data -->
+<div>
+	
+	<h4>Account Number</h4>
+	<p>@account.AccountNumber</p>
+
+	<h4>Name</h4>
+	<p>@account.FirstName @account.LastName </p>
+
+	<h4>Address</h4>
+	<p>@account.Address</p>
+	
+	<h4>Age</h4>
+	<p>@account.Age</p>
+	
+	<h4>Salary</h4>
+	<p>	£@account.Salary</p>
+
+	<!-- Edit button -->
+	<form asp-action="Edit" asp-controller="Accounts" method="post">
+		<input type="hidden" asp-for="@account.Id" value="@account.Id">
+		<button type="submit" class="btn btn-primary col-lg-3 col-12 my-3 py-3">Edit</button>
+	</form>
+
+	<!-- Go Back Button -->
+	<a asp-action="Index" asp-controller="Accounts"><button class="btn btn-danger col-lg-3 col-12 my-3 py-3">Go Back</button></a>
+
+</div>

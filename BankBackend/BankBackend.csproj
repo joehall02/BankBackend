@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\Customers\Class.cs" />
-    <Compile Remove="Views\Customers\Overdraft.cs" />
+    <Compile Remove="Views\Accounts\Class.cs" />
+    <Compile Remove="Views\Accounts\Overdraft.cs" />
   </ItemGroup>
 
   <ItemGroup>

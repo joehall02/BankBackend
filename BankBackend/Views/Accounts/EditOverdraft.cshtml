@@ -1,0 +1,28 @@
+﻿@model BankBackend.Models.Account;
+
+
+@{
+	ViewData["Title"] = "Edit Overdraft";
+
+	Account account = TempData["accounts"] as Account;
+}
+
+<h1>@account.FirstName's Overdraft</h1>
+
+<form action="/Accounts/UpdateOverdraft" method="post">
+	<input type="hidden" asp-for="Id" value="@account.Id" />
+	<div class="form-group col-md-6 col-12">
+		<label for="overdraft">Account Number</label>
+		<input type="text" class="form-control" id="overdraft" placeholder="Overdraft" asp-for="Overdraft" value="@account.Overdraft">
+	</div>
+	
+	<button type="submit" class="btn btn-primary col-lg-3 col-12 my-3 py-3">Submit</button>
+</form>
+
+<!-- Go Back Button -->
+<form asp-action="Overdraft" asp-controller="Accounts" method="post">
+	<input type="hidden" asp-for="Id" value="@account.Id">
+	<button type="submit" class="btn btn-danger col-lg-3 col-12 my-3 py-3">Go Back</button>
+</form>
+
+

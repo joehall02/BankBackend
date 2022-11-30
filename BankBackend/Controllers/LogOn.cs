@@ -23,7 +23,7 @@ namespace BankBackend.Controllers
             {
                 if(employee.Email == e.Email && employee.Password == e.Password)
                 {
-                    return RedirectToAction("Index", "Customers");
+                    return RedirectToAction("Index", "Accounts");
                 }
             }
             return View();
