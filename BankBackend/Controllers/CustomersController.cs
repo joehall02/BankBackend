@@ -9,7 +9,7 @@ namespace BankBackend.Controllers
         {
             // creates list to hold customer objects
             List<Customer> customers = new List<Customer>();
-
+            
             using (var db = new BankContext())
             {
                 // gets all customers from database
@@ -118,6 +118,38 @@ namespace BankBackend.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Overdraft()
+        {
+            List<Customer> customers = new List<Customer>();
+
+            using (var db = new BankContext())
+            {
+                // gets all customers from database
+                customers = db.Customers.Where(c => c.Salary >= 30000).ToList();
+            }
+
+            TempData["customers"] = customers;
+
+            return View();
+        }
+
+        public IActionResult OverdraftSearch(string searchTerm)
+        {
+            {
+                List<Customer> customers = new List<Customer>();
+
+                using (var db = new BankContext())
+                {
+                    // gets all customers from database
+                    customers = db.Customers.Where(c => c.Salary >= 30000 && c.FirstName.ToLower().Contains(searchTerm.ToLower())).ToList();
+                }
+
+                TempData["customers"] = customers;
+
+                return View("Overdraft");
+            }
         }
     }
 }

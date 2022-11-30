@@ -11,15 +11,17 @@ namespace BankBackend.Controllers
         }
 
         [HttpPost]
-        public IActionResult Logon(Employee model)
+        public IActionResult Logon(Employee employee)
         {
-            List<Employee> employees = new();
-            var db = new BankContext();
-            employees = db.Employees.ToList();
-            Employee employee = model;
+            List<Employee> employees = new List<Employee>();
+            using (var db = new BankContext())
+            {
+                employees = db.Employees.ToList();
+            }            
+            
             foreach(Employee e in employees)
             {
-                if(employee.Name == e.Name && employee.Password == e.Password)
+                if(employee.Email == e.Email && employee.Password == e.Password)
                 {
                     return RedirectToAction("Index", "Customers");
                 }

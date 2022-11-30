@@ -1,29 +1,29 @@
 ﻿@model BankBackend.Models.Employee
 @{
     Layout = "~/Views/Shared/LogonPage.cshtml";
-    ViewBag.Title = "SHU Bank Log In";
+	ViewData["Title"] = "Log On";
 }
-<div class="center">
-    <h1>Login</h1>
-    @using (Html.BeginForm())
-    {
-        <div class="txt_field">
-            @Html.TextBoxFor(c => c.Name)
-            <span></span>
-            <label>User Name</label>
-        </div>
-        <div>
-            <p></p>
-        </div>
-        <div class="txt_field">
-            @Html.PasswordFor(c => c.Password)
-            <span></span>
-            <label>Password</label>
-        </div>
-        <div>
-            <p></p>
-        </div>
-        <input type="submit" value="Login" />
 
-    }
+<div class="d-flex justify-content-center align-items-center vh-100">
+   
+
+   
+
+        <form asp-action="LogOn" asp-controller="LogOn">
+    
+            <div class="form-outline ">
+                <label class="form-label" for="Email">Email address</label>
+                <input type="email" id="Email" class="form-control" asp-for="Email" />
+            </div>
+    
+            <div class="form-outline">
+                <label class="form-label" for="Password">Password</label>
+                <input type="password" id="Password" class="form-control" asp-for="Password" />
+            </div>
+
+            <button type="submit" class="btn btn-primary p-3 my-3 w-100">Log In</button>
+        </form>
+    
+   
+   
 </div>
