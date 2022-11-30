@@ -33,17 +33,19 @@ namespace BankBackend.Controllers
         [HttpPost]
         public IActionResult Create(Account account)
         {
+            
             using (var db = new BankContext())
             {
                 // adds user to the database
                 db.Add(account);
                 // saves the changes
                 db.SaveChanges();
-
-
+                
+               
             }
 
-            return RedirectToAction("Index");
+
+            return RedirectToAction("PassAccount", "Cards", account);
         }
 
         public IActionResult Search(int searchTerm)

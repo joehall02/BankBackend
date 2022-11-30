@@ -11,7 +11,6 @@ namespace BankBackend.Controllers
 
             using (var db = new BankContext())
             {
-                // gets all customers from database
                 transactions = db.Transactions.Where(t => t.AccountId == account.Id).ToList();
                 account = db.Accounts.Where(c => c.Id == account.Id).FirstOrDefault();
             }

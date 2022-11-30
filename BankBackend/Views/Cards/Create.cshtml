@@ -1,0 +1,23 @@
+﻿@model BankBackend.Models.Card;
+
+@{
+	ViewData["Title"] = "Create Account";
+	Account account = TempData["account"] as Account;
+}
+
+<h1>Create Card for @account.FirstName</h1>
+
+<form asp-action="Create" asp-controller="Cards" method="post">
+	<input type="hidden" asp-for="AccountId" value="@account.Id" />
+
+	<div class="form-group col-md-6 col-12">
+		<label for="cardNumber">Card Number</label>
+		<input type="text" class="form-control" id="cardNumber" placeholder="Card Number" asp-for="CardNumber">
+	</div>
+	<div class="form-group col-md-6 col-12">
+		<label for="cardPin">Card Pin</label>
+		<input type="text" class="form-control" id="cardPin" placeholder="Card Pin" asp-for="CardPin">
+	</div>
+	
+	<button type="submit" class="btn btn-primary col-lg-3 col-12 my-3 py-3">Add Card</button>
+</form>

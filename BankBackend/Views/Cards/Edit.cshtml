@@ -1,0 +1,24 @@
+﻿@model BankBackend.Models.Card;
+
+@{
+	ViewData["Title"] = "Edit Card";
+
+	Account account = TempData["account"] as Account;
+	Card card = TempData["cards"] as Card;
+}
+
+<h1>Edit @account.FirstName's Card</h1>
+
+<form asp-action="UpdateDetails" asp-controller="Cards" method="post">
+	<input type="hidden" asp-for="Id" value="@card.Id" />
+
+	<div class="form-group col-md-6 col-12">
+		<label for="cardNumber">Card Number</label>
+		<input type="text" class="form-control" id="cardNumber" placeholder="Card Number" asp-for="CardNumber" value="@card.CardNumber">
+	</div>
+	<div class="form-group col-md-6 col-12">
+		<label for="cardPin">Card Pin</label>
+		<input type="text" class="form-control" id="cardPin" placeholder="Card Pin" asp-for="CardPin" value="@card.CardPin">
+	</div>
+	<button type="submit" class="btn btn-primary col-lg-3 col-12 my-3 py-3">Add</button>
+</form>
