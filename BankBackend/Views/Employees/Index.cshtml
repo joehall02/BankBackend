@@ -1,4 +1,5 @@
 ﻿@model BankBackend.Models.Employee;
+@inject IHttpContextAccessor contextAccessor;
 @{
 	ViewData["Title"] = "View Employees";
 
@@ -14,10 +15,12 @@
 
 				<div class="d-flex align-items-center justify-content-between">
 					<h1 class="py-3">Employee Accounts</h1>
-
-					<form asp-action="Create" asp-controller="Employees" method="post">
-						<button type="submit" class="btn btn-primary p-2">Add Employee</button>
-					</form>
+					@if (contextAccessor.HttpContext.Session.GetString("AccountType") == "Manager")
+					{
+						<form asp-action="Create" asp-controller="Employees" method="post">
+							<button type="submit" class="btn btn-primary p-2">Add Employee</button>
+						</form>
+					}
 
 				</div>
 

@@ -1,11 +1,19 @@
 ﻿using BankBackend.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Principal;
+using System.Web;
 
 namespace BankBackend.Controllers
 {
     public class EmployeesController : Controller
     {
+        private readonly IHttpContextAccessor _contextAccessor; 
+
+        public EmployeesController(IHttpContextAccessor contextAccessor)
+        {
+            _contextAccessor = contextAccessor; 
+        }  
         public IActionResult Logon()
         {
             return View();
@@ -24,6 +32,7 @@ namespace BankBackend.Controllers
             {
                 if (employee.Email == e.Email && employee.Password == e.Password)
                 {
+                    _contextAccessor.HttpContext.Session.SetString("AccountType", e.AccountType);
                     return RedirectToAction("Index", "Accounts");
                 }
             }
