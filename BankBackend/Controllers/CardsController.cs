@@ -27,7 +27,7 @@ namespace BankBackend.Controllers
 		{
 			using (var db = new BankContext())
 			{
-                account = db.Accounts.Where(c => c.Id == account.Id).FirstOrDefault();
+                account = db.Accounts.Where(a => a.Id == account.Id).FirstOrDefault();
             }
 
             TempData["account"] = account;
@@ -48,11 +48,12 @@ namespace BankBackend.Controllers
             return RedirectToAction("Index", "Accounts");
         }
 
+        [HttpPost]
         public IActionResult Edit(Account account)
         {
             using (var db = new BankContext())
             {
-                var cards = db.Cards.Where(c => c.Id == account.Id).FirstOrDefault();
+                var cards = db.Cards.Where(c => c.AccountId == account.Id).FirstOrDefault();
                 account = db.Accounts.Where(a => a.Id == account.Id).FirstOrDefault();
 
                 TempData["cards"] = cards;
@@ -68,7 +69,7 @@ namespace BankBackend.Controllers
             {
                 var cards = db.Cards.Where(c => c.Id == card.Id).FirstOrDefault();
                 cards.CardNumber = card.CardNumber;
-                card.CardPin = card.CardPin;
+                cards.CardPin = card.CardPin;
                 
 
                 db.SaveChanges();

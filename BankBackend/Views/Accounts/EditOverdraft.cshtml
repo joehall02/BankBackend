@@ -12,7 +12,7 @@
 <form action="/Accounts/UpdateOverdraft" method="post">
 	<input type="hidden" asp-for="Id" value="@account.Id" />
 	<div class="form-group col-md-6 col-12">
-		<label for="overdraft">Account Number</label>
+		<label for="overdraft">Overdraft limit</label>
 		<input type="text" class="form-control" id="overdraft" placeholder="Overdraft" asp-for="Overdraft" value="@account.Overdraft">
 	</div>
 	

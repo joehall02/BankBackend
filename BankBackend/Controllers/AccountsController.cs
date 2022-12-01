@@ -84,7 +84,7 @@ namespace BankBackend.Controllers
         {
             using (var db = new BankContext())
             {
-                var accounts = db.Accounts.Where(c => c.Id == account.Id).FirstOrDefault();
+                var accounts = db.Accounts.Where(a => a.Id == account.Id).FirstOrDefault();
                 accounts.AccountNumber = account.AccountNumber;
                 accounts.FirstName = account.FirstName;
                 accounts.LastName = account.LastName;
