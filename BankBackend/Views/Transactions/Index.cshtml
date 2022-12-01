@@ -11,6 +11,12 @@
 			<div class="col-md-12">
 				<div class="d-flex align-items-center justify-content-between">
 					<h1 class="py-3">@account.FirstName's Transactions</h1>
+					
+					<!-- Add Transaction button -->
+					<form asp-action="Create" asp-controller="Transactions" method="post">
+						<input type="hidden" asp-for="@account.Id" value="@account.Id">
+						<button type="submit" class="btn btn-primary p-2">Add Transaction</button>
+					</form>
 				</div>
 				@if (transactions.Count > 0)
 				{

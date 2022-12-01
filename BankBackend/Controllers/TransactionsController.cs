@@ -20,5 +20,33 @@ namespace BankBackend.Controllers
 
             return View();
         }
+
+        public IActionResult Create(Account account)
+        {
+            using (var db = new BankContext())
+            {
+                account = db.Accounts.Where(a => a.Id == account.Id).FirstOrDefault();
+            }
+
+            TempData["account"] = account;
+
+            return View();
+        }
+
+        public IActionResult Add(Transaction transaction)
+        {
+            var account = TempData["account"] as Account;
+
+            using (var db = new BankContext())
+            {
+                db.Add(transaction);
+                db.SaveChanges();
+
+                account = db.Accounts.Where(a => a.Id == transaction.AccountId).FirstOrDefault();
+            }
+
+
+            return RedirectToAction("Index", account);
+        }
     }
 }

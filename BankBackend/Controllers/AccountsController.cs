@@ -115,8 +115,10 @@ namespace BankBackend.Controllers
             using (var db = new BankContext())
             {
                 var acc = db.Accounts.Where(c => c.Id == account.Id).FirstOrDefault();
+                
 
                 db.Remove(acc);
+                
 
                 db.SaveChanges();
             }

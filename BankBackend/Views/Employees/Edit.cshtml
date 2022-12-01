@@ -1,0 +1,48 @@
+﻿@model BankBackend.Models.Employee;
+
+
+@{
+	ViewData["Title"] = "Employee Details";
+
+	Employee employee = TempData["employee"] as Employee;
+}
+
+<h1>@employee.FirstName's Details</h1>
+
+<form action="/Employees/UpdateDetails" method="post">
+	<input type="hidden" asp-for="Id" value="@employee.Id" />
+	<div class="form-group col-md-6 col-12">
+		<label for="email">Employee Email</label>
+		<input type="text" class="form-control" id="email" placeholder="Email" asp-for="Email" value="@employee.Email">
+	</div>
+	<div class="form-group col-md-6 col-12">
+		<label for="firstName">First Name</label>
+		<input type="text" class="form-control" id="firstName" placeholder="First Name" asp-for="FirstName" value="@employee.FirstName">
+	</div>
+	<div class="form-group col-md-6 col-12">
+		<label for="lastName">Last Name</label>
+		<input type="text" class="form-control" id="lastName" placeholder="Last Name" asp-for="LastName" value="@employee.LastName">
+	</div>
+	<div class="form-group col-md-6 col-12">
+		<label for="password">Password</label>
+		<input type="text" class="form-control" id="password" placeholder="Password" asp-for="Password" value="@employee.Password">
+	</div>
+	<div class="form-group col-md-6 col-12">
+		<label for="type">Employee Type</label>
+		<select class="form-select" aria-label="Employee" asp-for="AccountType">
+			<option selected>@employee.AccountType</option>
+			<option value="Manager">Manager</option>
+			<option value="Employee">Employee</option>
+		</select>
+	</div>
+	
+	<button type="submit" class="btn btn-primary col-lg-3 col-12 my-3 py-3">Submit</button>
+</form>
+
+<!-- Go Back Button -->
+<form asp-action="Details" asp-controller="Employees" method="post">
+	<input type="hidden" asp-for="Id" value="@employee.Id">
+	<button type="submit" class="btn btn-danger col-lg-3 col-12 my-3 py-3">Go Back</button>
+</form>
+
+

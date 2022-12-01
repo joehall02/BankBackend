@@ -1,0 +1,35 @@
+﻿@model BankBackend.Models.Transaction;
+
+@{
+	ViewData["Title"] = "Add Transaction";
+	Account account = TempData["account"] as Account;
+}
+
+<h1>Add Transaction for @account.FirstName</h1>
+
+<form asp-action="Add" asp-controller="Transactions" method="post">
+	<input type="hidden" asp-for="AccountId" value="@account.Id" />
+
+	<div class="form-group col-md-6 col-12">
+		<label for="amount">Amount</label>
+		<input type="text" class="form-control" id="amount" placeholder="Amount" asp-for="Amount">
+	</div>
+
+	<div class="form-group col-md-6 col-12">
+		<label for="type">Transaction Type</label>
+		<select class="form-select" asp-for="Type">
+			<option selected>Choose...</option>
+			<option value="Withdraw">Withdraw</option>
+			<option value="Deposit">Deposit</option>
+		</select>
+	</div>
+
+
+	<button type="submit" class="btn btn-primary col-lg-3 col-12 my-3 py-3">Add Transaction</button>
+</form>
+
+<!-- Go Back Button -->
+<form asp-action="Index" asp-controller="Transactions" method="post">
+	<input type="hidden" asp-for="Id" value="@account.Id">
+	<button type="submit" class="btn btn-danger col-lg-3 col-12 my-3 py-3">Go Back</button>
+</form>

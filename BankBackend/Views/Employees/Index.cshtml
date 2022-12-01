@@ -1,0 +1,62 @@
+﻿@model BankBackend.Models.Employee;
+@{
+	ViewData["Title"] = "View Employees";
+
+	// gets list of customer objects sent by the controller
+	List<Employee> employees = TempData["employees"] as List<Employee>;
+}
+
+<div class="container">
+	@if (employees != null)
+	{
+		<div class="row">
+			<div class="col-md-12">
+
+				<div class="d-flex align-items-center justify-content-between">
+					<h1 class="py-3">Employee Accounts</h1>
+
+					<form asp-action="Create" asp-controller="Employees" method="post">
+						<button type="submit" class="btn btn-primary p-2">Add Employee</button>
+					</form>
+
+				</div>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Employee Email</th>
+							<th>Name</th>
+							<th>Employee Type</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (Employee employee in employees)
+						{
+							<tr>
+								<td>@employee.Email</td>
+								<td>@employee.FirstName @employee.LastName</td>
+								<td>@employee.AccountType</td>
+								<td class="d-flex justify-content-between align-items-center">
+
+									<!-- View Details -->
+									<form asp-action="Details" asp-controller="Employees" method="post">
+										<input type="hidden" asp-for="Id" value="@employee.Id">
+										<button type="submit" class="btn btn-secondary">Details</button>
+									</form>
+
+									<!-- Delete emplpyee button -->
+									<form asp-action="Delete" asp-controller="Employees" method="post">
+										<input type="hidden" asp-for="Id" value="@employee.Id">
+										<button type="submit" class="btn btn-danger">Delete</button>
+									</form>
+
+
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	}

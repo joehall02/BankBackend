@@ -22,3 +22,9 @@
 	</div>
 	<button type="submit" class="btn btn-primary col-lg-3 col-12 my-3 py-3">Edit</button>
 </form>
+
+<!-- Go Back Button -->
+<form asp-action="Index" asp-controller="Cards" method="post">
+	<input type="hidden" asp-for="Id" value="@account.Id">
+	<button type="submit" class="btn btn-danger col-lg-3 col-12 my-3 py-3">Go Back</button>
+</form>
