@@ -112,13 +112,23 @@ namespace BankBackend.Controllers
         
         public IActionResult Delete(Account account)
         {
+            List<Transaction> trans = new List<Transaction>();
+            
             using (var db = new BankContext())
             {
                 var acc = db.Accounts.Where(c => c.Id == account.Id).FirstOrDefault();
-                
+                var card = db.Cards.Where(c => c.AccountId == account.Id).FirstOrDefault();
+
+
+                trans = db.Transactions.Where(c => c.AccountId == account.Id).ToList();
 
                 db.Remove(acc);
-                
+                db.Remove(card);
+
+                foreach (Transaction t in trans)
+                {
+                    db.Remove(t);
+                }
 
                 db.SaveChanges();
             }
