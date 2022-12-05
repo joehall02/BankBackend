@@ -1,9 +1,7 @@
 ﻿@model BankBackend.Models.Employee;
-@inject IHttpContextAccessor contextAccessor;
 @{
 	ViewData["Title"] = "View Employees";
 
-	// gets list of customer objects sent by the controller
 	List<Employee> employees = TempData["employees"] as List<Employee>;
 }
 
@@ -15,12 +13,11 @@
 
 				<div class="d-flex align-items-center justify-content-between">
 					<h1 class="py-3">Employee Accounts</h1>
-					@if (contextAccessor.HttpContext.Session.GetString("AccountType") == "Manager")
-					{
-						<form asp-action="Create" asp-controller="Employees" method="post">
-							<button type="submit" class="btn btn-primary p-2">Add Employee</button>
-						</form>
-					}
+					
+					<form asp-action="Create" asp-controller="Employees" method="post">
+						<button type="submit" class="btn btn-primary p-2">Add Employee</button>
+					</form>
+					
 
 				</div>
 

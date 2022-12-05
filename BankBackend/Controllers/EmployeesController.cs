@@ -33,6 +33,7 @@ namespace BankBackend.Controllers
                 if (employee.Email == e.Email && employee.Password == e.Password)
                 {
                     _contextAccessor.HttpContext.Session.SetString("AccountType", e.AccountType);
+                    _contextAccessor.HttpContext.Session.SetString("FirstName", e.FirstName);
                     return RedirectToAction("Index", "Accounts");
                 }
             }
